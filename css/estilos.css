@@ -151,12 +151,6 @@
   .card-foot{ display:flex; align-items:center; justify-content:space-between; margin-top:10px; }
   .precio{ font-size:17px; font-weight:700; color:var(--fucsia-oscuro); }
 
-  .conteo{
-    font-size:12px; letter-spacing:.05em; text-transform:uppercase;
-    color:var(--fucsia); background:var(--rosa-pastel);
-    padding:6px 14px; border-radius:999px; white-space:nowrap;
-    margin-bottom:6px;
-  }
 
   .proximamente{
     display:flex; flex-direction:column; align-items:center; justify-content:center;
