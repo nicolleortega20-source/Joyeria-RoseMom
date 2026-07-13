@@ -6,7 +6,198 @@
 <title>RoseMom — Catálogo de Joyería</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-<link href="css/estilos.css" rel="stylesheet">
+<style>
+  :root{
+    --fucsia:#B5235A;
+    --fucsia-oscuro:#8C1A44;
+    --rosa:#D4527E;
+    --rosa-pastel:#FCE8EC;
+    --rosa-pastel-2:#FAECEF;
+    --crema:#FDF6F7;
+    --tinta:#26232B;
+    --tinta-suave:#4B4650;
+    --linea:rgba(38,35,43,0.12);
+    --sombra: 0 18px 40px rgba(140,26,68,0.14);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--crema);
+    color:var(--tinta);
+    font-family:'DM Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    margin:0;
+    font-weight:600;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+
+  .rose-mark{ display:block; object-fit:contain; }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(253,246,247,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--linea);
+  }
+  .nav-wrap{
+    max-width:1180px; margin:0 auto;
+    padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:24px; flex-wrap:wrap;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; color:var(--fucsia); }
+  .brand .rose-mark{ width:34px; height:34px; }
+  .brand-word{ font-size:26px; color:var(--fucsia-oscuro); letter-spacing:.2px;}
+  .brand-word em{ color:var(--fucsia); font-style:italic; font-weight:600;}
+
+  nav.links{ display:flex; gap:22px; flex-wrap:wrap; }
+  nav.links a{
+    font-size:13px; letter-spacing:.03em; text-transform:uppercase;
+    color:var(--tinta-suave); position:relative; padding-bottom:4px;
+  }
+  nav.links a:hover{ color:var(--fucsia-oscuro); }
+
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:96px 28px 76px;
+    text-align:center;
+    background:
+      radial-gradient(1200px 600px at 15% -10%, var(--rosa-pastel) 0%, transparent 60%),
+      radial-gradient(1000px 500px at 100% 110%, var(--rosa-pastel-2) 0%, transparent 55%),
+      var(--crema);
+  }
+  .hero .rose-mark.corner{ position:absolute; opacity:.9; }
+  .hero .rose-mark.corner.br{ width:280px; height:280px; right:-70px; bottom:-90px; }
+  .hero .rose-mark.corner.tl{ width:200px; height:200px; left:-60px; top:-60px; }
+  .hero-inner{ position:relative; max-width:680px; margin:0 auto; }
+  .eyebrow{
+    font-size:13px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--fucsia); font-weight:700; margin-bottom:18px;
+  }
+  .hero h1{ font-size:clamp(40px, 6vw, 68px); line-height:1.08; color:var(--fucsia-oscuro); }
+  .hero h1 em{ font-style:italic; color:var(--fucsia); }
+  .hero p.sub{ margin:22px auto 0; max-width:480px; font-size:16px; line-height:1.7; color:var(--tinta-suave); }
+  .hero-cta{ margin-top:34px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn{
+    padding:14px 30px; border-radius:999px; font-size:14px; letter-spacing:.04em;
+    text-transform:uppercase; border:1px solid transparent; transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-primary{ background:var(--fucsia); color:#fff; box-shadow:var(--sombra); }
+  .btn-primary:hover{ background:var(--fucsia-oscuro); }
+  .btn-outline{ border-color:var(--fucsia); color:var(--fucsia-oscuro); background:transparent; }
+  .btn-outline:hover{ background:var(--rosa-pastel); }
+
+  .textura{
+    height:56px;
+    background-image: radial-gradient(circle, rgba(255,255,255,.35) 30%, transparent 31%);
+    background-size:34px 34px;
+    background-color:var(--fucsia);
+    background-position:center;
+  }
+
+  .filtro-wrap{
+    position:sticky; top:69px; z-index:40;
+    background:var(--crema);
+    border-bottom:1px solid var(--linea);
+  }
+  .filtro{
+    max-width:1180px; margin:0 auto; padding:16px 28px;
+    display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center;
+  }
+  .chip{
+    padding:9px 18px; border-radius:999px; border:1px solid var(--fucsia);
+    color:var(--fucsia-oscuro); background:transparent; font-size:12.5px;
+    letter-spacing:.02em; text-transform:uppercase; transition:all .2s ease;
+    display:inline-block;
+  }
+  .chip:hover{ background:var(--fucsia); color:#fff; }
+
+  .catalogo{ max-width:1180px; margin:0 auto; padding:70px 28px 40px; }
+  .seccion{ margin-bottom:88px; scroll-margin-top:180px; }
+  .seccion-head{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap:24px; margin-bottom:34px; flex-wrap:wrap;
+    border-bottom:1px solid var(--linea); padding-bottom:18px;
+  }
+  .seccion-head h2{ font-size:clamp(30px,4vw,42px); color:var(--fucsia-oscuro); }
+  .seccion-head p{ margin:6px 0 0; color:var(--tinta-suave); font-size:14px; max-width:360px; }
+
+  .grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:26px; }
+  @media (max-width:1000px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .grid{ grid-template-columns:1fr; } }
+
+  .card{
+    background:#fff; border-radius:18px; overflow:hidden;
+    box-shadow:0 8px 24px rgba(140,26,68,0.08);
+    transition:transform .25s ease, box-shadow .25s ease;
+    display:flex; flex-direction:column;
+  }
+  .card:hover{ transform:translateY(-6px); box-shadow:var(--sombra); }
+
+  .card-media{
+    position:relative; aspect-ratio:1/1;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden; background:var(--rosa-pastel);
+  }
+  .card-media img{ width:100%; height:100%; object-fit:cover; }
+  .card-media .tag{
+    position:absolute; top:12px; left:12px;
+    background:rgba(255,255,255,.85); color:var(--fucsia-oscuro);
+    font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    padding:5px 10px; border-radius:999px; font-weight:700; z-index:2;
+  }
+
+  .card-body{ padding:18px 18px 20px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .card-body h3{ font-size:17.5px; font-weight:500; color:var(--tinta); font-family:'DM Sans', sans-serif; line-height:1.3; }
+  .card-body .desc{ font-size:12.5px; color:var(--tinta-suave); line-height:1.55; }
+  .card-foot{ display:flex; align-items:center; justify-content:space-between; margin-top:10px; }
+  .precio{ font-size:17px; font-weight:700; color:var(--fucsia-oscuro); }
+
+  .conteo{
+    font-size:12px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--fucsia); background:var(--rosa-pastel);
+    padding:6px 14px; border-radius:999px; white-space:nowrap;
+    margin-bottom:6px;
+  }
+
+  .proximamente{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:16px; padding:60px 20px; background:var(--rosa-pastel); border-radius:18px;
+    text-align:center;
+  }
+  .proximamente .rose-mark{ width:52px; height:52px; opacity:.55; }
+  .proximamente p{ color:var(--fucsia-oscuro); font-size:14px; margin:0; }
+
+  .frase{ background:var(--rosa-pastel); text-align:center; padding:90px 28px; }
+  .frase blockquote{
+    max-width:760px; margin:0 auto; font-size:clamp(22px,3vw,30px);
+    color:var(--fucsia-oscuro); font-weight:700; font-family:'DM Sans',sans-serif; line-height:1.5;
+  }
+  .frase .quote-mark{ font-family:'Cormorant Garamond',serif; font-size:90px; color:var(--rosa); line-height:0; display:block; margin-bottom:10px;}
+
+  footer{ background:var(--tinta); color:var(--rosa-pastel); padding:64px 28px 28px; }
+  .footer-inner{ max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; }
+  @media (max-width:760px){ .footer-inner{ grid-template-columns:1fr 1fr; } }
+  footer .brand{ color:var(--rosa); margin-bottom:14px; }
+  footer .brand-word{ color:#fff; }
+  footer p{ font-size:13px; line-height:1.7; color:#c9c1c6; margin:0; }
+  footer h4{ font-family:'DM Sans',sans-serif; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:#fff; margin-bottom:14px; }
+  footer ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+  footer ul a{ font-size:13.5px; color:#c9c1c6; }
+  footer ul a:hover{ color:var(--rosa); }
+  .footer-bottom{
+    max-width:1180px; margin:48px auto 0; padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.1);
+    font-size:12px; color:#8f8790; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+</style>
 </head>
 <body>
 
@@ -16,7 +207,17 @@
       <img class="rose-mark" src="img/logo.png" alt="Ícono RoseMom">
       <span class="brand-word serif">Rose<em>Mom</em></span>
     </a>
+    <nav class="links">
+
+    <a class="chip" href="#aretes">Aretes</a>
+    <a class="chip" href="#collares">Collares</a>
+    <a class="chip" href="#pulseras">Pulseras</a>
+    <a class="chip" href="#anillos">Anillos</a>
+    <a class="chip" href="#conjuntos">Conjuntos</a>
+    <a class="chip" href="#tobilleras">Tobilleras</a>
+    <a class="chip" href="#religiosos">Artículos religiosos</a>
   </div>
+    </nav>
 </header>
 
 <section class="hero" id="top">
@@ -33,1055 +234,1445 @@
   </div>
 </section>
 
-<div class="textura" aria-hidden="true"></div>
-
-<div class="filtro-wrap">
-  <div class="filtro">
-    <a class="chip" href="#aretes">Aretes</a>
-    <a class="chip" href="#collares">Collares</a>
-    <a class="chip" href="#pulseras">Pulseras</a>
-    <a class="chip" href="#anillos">Anillos</a>
-    <a class="chip" href="#conjuntos">Conjuntos</a>
-    <a class="chip" href="#articulos">Artículos Religiosos</a>
-    <a class="chip" href="#tobilleras">Tobilleras</a>
-
-  </div>
-</div>
 
 <main class="catalogo">
 
-  <!-- ===================== ARETES ===================== -->
   <section class="seccion" id="aretes">
-
     <div class="seccion-head">
       <div>
         <h2>Aretes</h2>
         <p>Piezas para enmarcar el rostro con delicadeza.</p>
       </div>
+      <span class="conteo">45 piezas</span>
     </div>
     <div class="grid">
-
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Arete flor zirconia _ Plata _ Precio 260.jpg" alt="AreteFlorconZirconia">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/arete-flor-zirconia.jpg" alt="Arete Flor con Zirconia" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Arete Flor con Zirconia</h3>
-          <p class="desc">
-            Arete en forma de flor con zirconias engastadas, elaborado en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$260 MXN</span>
-          </div>
+          <p class="desc">Arete con motivo floral con zirconias engastadas, elaborado en plata.</p>
+          <div class="card-foot"><span class="precio">$260 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Arete trebol negro _ plata _ precio 270.jpg" alt="AreteTrbolNegro">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/arete-trebol-negro.jpg" alt="Arete Trebol Negro" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Arete Trébol Negro</h3>
-          <p class="desc">
-            Arete con forma de trébol en esmalte negro, elaborado en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$270 MXN</span>
-          </div>
+          <h3>Arete Trebol Negro</h3>
+          <p class="desc">Arete con forma de trébol, elaborado en plata.</p>
+          <div class="card-foot"><span class="precio">$270 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes Árbol _ acero _ $180.jpg" alt="Aretesrbol">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-arbol.jpg" alt="Aretes Árbol" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Árbol</h3>
-          <p class="desc">
-            Aretes con diseño de árbol, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$180 MXN</span>
-          </div>
+          <h3>Aretes Árbol</h3>
+          <p class="desc">Aretes con motivo de árbol, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$180 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes Corte Marquesa verde_ plata _ precio 250.jpg" alt="AretesCorteMarquesaVerde">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-corte-marquesa-verde.jpg" alt="Aretes Corte Marquesa Verde" loading="lazy">
         </div>
-        
         <div class="card-body">
           <h3>Aretes Corte Marquesa Verde</h3>
-          <p class="desc">
-            Aretes con piedra corte marquesa en tono verde, elaborados en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$250 MXN</span>
-          </div>
+          <p class="desc">Aretes con corte marquesa, elaborado en plata.</p>
+          <div class="card-foot"><span class="precio">$250 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes Cristal Redondo _ Acero _ $80.jpg" alt="AretesCristalRedondo">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-cristal-redondo.jpg" alt="Aretes Cristal Redondo" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Cristal Redondo</h3>
-          <p class="desc">
-            Aretes tipo stud con cristal redondo, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$80 MXN</span>
-          </div>
+          <p class="desc">Aretes de forma redonda con cristal facetado, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$80 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes Eslabones Dorados _ acero _ $160.jpg" alt="AretesEslabonesDorados">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-eslabones-dorados.jpg" alt="Aretes Eslabones Dorados" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Eslabones Dorados</h3>
-          <p class="desc">
-            Aretes con diseño de eslabones en acabado dorado, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$160 MXN</span>
-          </div>
+          <p class="desc">Aretes de eslabones, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$160 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes Media Luna _ Chapa de oro plateada _ $160.jpg" alt="AretesMediaLuna">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-media-luna.jpg" alt="Aretes Media Luna" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Media Luna</h3>
-          <p class="desc">
-            Aretes con forma de media luna, elaborados en chapa de oro.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$160 MXN</span>
-          </div>
+          <p class="desc">Aretes con motivo de media luna, elaborado en chapa de oro plateada.</p>
+          <div class="card-foot"><span class="precio">$160 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes Plata_ broche mariposa_ Precio260.jpg" alt="AretesdePlataconBrocheMa">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-con-broche-mariposa.jpg" alt="Aretes con Broche Mariposa" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes de Plata con Broche Mariposa</h3>
-          <p class="desc">
-            Aretes elaborados en plata con broche tipo mariposa para mayor seguridad.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$260 MXN</span>
-          </div>
+          <h3>Aretes con Broche Mariposa</h3>
+          <p class="desc">Aretes con mariposas caladas, elaborado en plata.</p>
+          <div class="card-foot"><span class="precio">$260 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes bicolor con aro _ chapa de oro _ $150.jpg" alt="AretesBicolorconAro">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-bicolor-con-aro.jpg" alt="Aretes Bicolor con Aro" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Bicolor con Aro</h3>
-          <p class="desc">
-            Aretes de aro con acabado bicolor, elaborados en chapa de oro.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$150 MXN</span>
-          </div>
+          <p class="desc">Aretes tipo aro, elaborado en chapa de oro.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes colgantes bicolor con placa romboidal satinada _ acero _ $170.jpg" alt="AretesColgantesBicolorco">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-colgantes-bicolor-con-placa-romboidal-satinada.jpg" alt="Aretes Colgantes Bicolor con Placa Romboidal Satinada" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Colgantes Bicolor con Placa Romboidal</h3>
-          <p class="desc">
-            Aretes colgantes con placa romboidal satinada en acabado bicolor, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$170 MXN</span>
-          </div>
+          <h3>Aretes Colgantes Bicolor con Placa Romboidal Satinada</h3>
+          <p class="desc">Aretes de diseño colgantes bicolor con placa romboidal satinada, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$170 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes colgantes con cuentas tipo cristal _ plata _ $170.jpg" alt="AretesColgantesconCuenta">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-colgantes-con-cuentas-tipo-cristal.jpg" alt="Aretes Colgantes con Cuentas Tipo con Cristal" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Colgantes con Cuentas de Cristal</h3>
-          <p class="desc">
-            Aretes colgantes con cuentas tipo cristal, elaborados en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$170 MXN</span>
-          </div>
+          <h3>Aretes Colgantes con Cuentas Tipo con Cristal</h3>
+          <p class="desc">Aretes con cristal facetado, elaborado en plata.</p>
+          <div class="card-foot"><span class="precio">$170 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes con pavé  y cristal colgante _ chapa de oro _ $180.jpg" alt="AretesconPavyCristalColg">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-con-pave-y-cristal-colgante.jpg" alt="Aretes con Pavé y Cristal Colgante" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes con Pavé y Cristal Colgante</h3>
-          <p class="desc">
-            Aretes con detalle de pavé y cristal colgante, elaborados en chapa de oro.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$180 MXN</span>
-          </div>
+          <h3>Aretes con Pavé y Cristal Colgante</h3>
+          <p class="desc">Aretes con cristal facetado con acabado pavé, elaborado en chapa de oro.</p>
+          <div class="card-foot"><span class="precio">$180 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes concha perlas _ chapa de oro _ $160.jpg" alt="AretesConchaconPerlas">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-concha-perlas.jpg" alt="Aretes Concha con Perlas" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Concha con Perlas</h3>
-          <p class="desc">
-            Aretes con forma de concha y perlas, elaborados en chapa de oro.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$160 MXN</span>
-          </div>
+          <p class="desc">Aretes con forma de concha con perla cultivada, elaborado en chapa de oro.</p>
+          <div class="card-foot"><span class="precio">$160 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes concha plateada _ acero _ $140.jpg" alt="AretesConchaPlateada">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-concha-plateada.jpg" alt="Aretes Concha Plateada" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Concha Plateada</h3>
-          <p class="desc">
-            Aretes con forma de concha en acabado plateado, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$140 MXN</span>
-          </div>
+          <p class="desc">Aretes con forma de concha, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$140 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes corazón plateado _ acero _ $150.jpg" alt="AretesCoraznPlateado">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-corazon-plateado.jpg" alt="Aretes Corazón Plateado" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Corazón Plateado</h3>
-          <p class="desc">
-            Aretes con forma de corazón en acabado plateado, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$150 MXN</span>
-          </div>
+          <h3>Aretes Corazón Plateado</h3>
+          <p class="desc">Aretes con forma de corazón, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes cuadros concéntricos plateados _ _ $.jpg" alt="AretesCuadrosConcntricos">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-cuadro-concentricos-plateados.jpg" alt="Aretes Cuadro Concéntricos Plateados" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Cuadros Concéntricos Plateados</h3>
-          <p class="desc">
-            Aretes con diseño geométrico de cuadros concéntricos en acabado plateado.
-          </p>
-          <div class="card-foot">
-            <span class="precio">Consultar precio</span>
-          </div>
+          <h3>Aretes Cuadro Concéntricos Plateados</h3>
+          <p class="desc">Aretes de líneas geométricas, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes doble cuadrado _ acero _ $170.jpg" alt="AretesDobleCuadrado">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-doble-cuadrado.jpg" alt="Aretes Doble Cuadrado" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Doble Cuadrado</h3>
-          <p class="desc">
-            Aretes con diseño de doble cuadrado, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$170 MXN</span>
-          </div>
+          <p class="desc">Aretes de forma cuadrada de doble hilera, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$170 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes flor dorada con perla _ acero _ $170.jpg" alt="AretesFlorDoradaconPerla">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-flor-dorada-con-perla.jpg" alt="Aretes Flor Dorada con Perla" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Flor Dorada con Perla</h3>
-          <p class="desc">
-            Aretes con forma de flor en acabado dorado y perla central, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$170 MXN</span>
-          </div>
+          <p class="desc">Aretes con motivo floral con perla cultivada, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$170 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes flor rubí con zirconia _ plata _ precio 480.jpg" alt="AretesFlorRubconZirconia">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-flor-rubi-con-zirconia.jpg" alt="Aretes Flor Rubí con Zirconia" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Flor Rubí con Zirconia</h3>
-          <p class="desc">
-            Aretes con forma de flor, piedra rubí y zirconias, elaborados en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$480 MXN</span>
-          </div>
+          <h3>Aretes Flor Rubí con Zirconia</h3>
+          <p class="desc">Aretes con motivo floral con zirconias engastadas, elaborado en plata.</p>
+          <div class="card-foot"><span class="precio">$480 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes florales con perla central plateada _ acero _ $160.jpg" alt="AretesFloralesconPerlaCe">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-florales-con-perla-central-plateada.jpg" alt="Aretes Florales con Perla Central Plateada" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Florales con Perla Central</h3>
-          <p class="desc">
-            Aretes con diseño floral y perla central en acabado plateado, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$160 MXN</span>
-          </div>
+          <h3>Aretes Florales con Perla Central Plateada</h3>
+          <p class="desc">Aretes con motivo floral con perla cultivada, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$160 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes geométricos dorados _ acero _ $170.jpg" alt="AretesGeomtricosDorados">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-geometricos-dorados.jpg" alt="Aretes Geométricos Dorados" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Geométricos Dorados</h3>
-          <p class="desc">
-            Aretes con diseño geométrico en acabado dorado, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$170 MXN</span>
-          </div>
+          <h3>Aretes Geométricos Dorados</h3>
+          <p class="desc">Aretes de líneas geométricas, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$170 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes gota_ Plata _ Precio 270.jpg" alt="AretesGota">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-gota.jpg" alt="Aretes Gota" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Gota</h3>
-          <p class="desc">
-            Aretes con forma de gota, elaborados en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$270 MXN</span>
-          </div>
+          <p class="desc">Aretes en forma de gota, elaborado en plata.</p>
+          <div class="card-foot"><span class="precio">$270 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes hoja plateada texturizada _ acero _ $150.jpg" alt="AretesHojaPlateadaTextur">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-hoja-plateada-texturizada.jpg" alt="Aretes Hoja Plateada Texturizada" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Hoja Plateada Texturizada</h3>
-          <p class="desc">
-            Aretes con forma de hoja texturizada en acabado plateado, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$150 MXN</span>
-          </div>
+          <p class="desc">Aretes con textura de hoja, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes largos cadena _ acero _ $130.jpg" alt="AretesLargosdeCadena">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-largos-cadena.jpg" alt="Aretes Largos Cadena" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Largos de Cadena</h3>
-          <p class="desc">
-            Aretes largos con diseño de cadena, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$130 MXN</span>
-          </div>
+          <h3>Aretes Largos Cadena</h3>
+          <p class="desc">Aretes de diseño largos cadena, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$130 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes largos con aro oval texturizado _ chapa de oro _ $150.jpg" alt="AretesLargosconAroOvalTe">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-largos-con-aro-oval-texturizado.jpg" alt="Aretes Largos con Aro Oval Texturizado" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Largos con Aro Oval Texturizado</h3>
-          <p class="desc">
-            Aretes largos con aro oval texturizado, elaborados en chapa de oro.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$150 MXN</span>
-          </div>
+          <p class="desc">Aretes de forma ovalada tipo aro, elaborado en chapa de oro.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes largos de eslabones _ acero _ $150.jpg" alt="AretesLargosdeEslabones">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-largos-de-eslabones.jpg" alt="Aretes Largos de Eslabones" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Largos de Eslabones</h3>
-          <p class="desc">
-            Aretes largos con diseño de eslabones, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$150 MXN</span>
-          </div>
+          <p class="desc">Aretes de eslabones, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes media argolla bombé en acabado dorado texturizado _ chapa de oro _ $150.jpg" alt="AretesMediaArgollaBomb">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-media-argolla-bombe-en-acabado-dorado-texturizado.jpg" alt="Aretes Media Argolla Bombé en Acabado Dorado Texturizado" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Media Argolla Bombé</h3>
-          <p class="desc">
-            Aretes de media argolla bombé con textura en acabado dorado, elaborados en chapa de oro.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$150 MXN</span>
-          </div>
+          <h3>Aretes Media Argolla Bombé en Acabado Dorado Texturizado</h3>
+          <p class="desc">Aretes tipo argolla, elaborado en chapa de oro.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes orbita dorada _ acero _ $160.jpg" alt="AretesrbitaDorada">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-orbita-dorada.jpg" alt="Aretes Orbita Dorada" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Órbita Dorada</h3>
-          <p class="desc">
-            Aretes con diseño de órbita en acabado dorado, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$160 MXN</span>
-          </div>
+          <h3>Aretes Orbita Dorada</h3>
+          <p class="desc">Aretes de diseño orbita dorada, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$160 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes ovales plateados con cristal tipo navette _ chapa de oro _ $160.jpg" alt="AretesOvalesconCristalNa">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-ovales-plateados-con-cristal-tipo-navette.jpg" alt="Aretes Ovales Plateados con Cristal Tipo Navette" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Ovales con Cristal Navette</h3>
-          <p class="desc">
-            Aretes ovalados con cristal tipo navette, elaborados en chapa de oro.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$160 MXN</span>
-          </div>
+          <h3>Aretes Ovales Plateados con Cristal Tipo Navette</h3>
+          <p class="desc">Aretes de forma ovalada con cristal facetado, elaborado en chapa de oro.</p>
+          <div class="card-foot"><span class="precio">$160 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes pasadores con cristal opalino _ plata _ $150.jpg" alt="AretesPasadoresconCrista">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-pasadores-con-cristal-opalino.jpg" alt="Aretes Pasadores con Cristal Opalino" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Pasadores con Cristal Opalino</h3>
-          <p class="desc">
-            Aretes tipo pasador con cristal opalino, elaborados en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$150 MXN</span>
-          </div>
+          <p class="desc">Aretes con cristal facetado con cristal opalino, elaborado en plata.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes rectangulares bicolor _ acero _ $180.jpg" alt="AretesRectangularesBicol">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-rectangulares-bicolor.jpg" alt="Aretes Rectangulares Bicolor" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Rectangulares Bicolor</h3>
-          <p class="desc">
-            Aretes rectangulares en acabado bicolor, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$180 MXN</span>
-          </div>
+          <p class="desc">Aretes de forma rectangular, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$180 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes tipo aro abierto con placa curva _ chapa de oro _ $160.jpg" alt="AretesAroAbiertoconPlaca">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-rectangulares-pave.jpg" alt="Aretes Rectangulares Pavé" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Aro Abierto con Placa Curva</h3>
-          <p class="desc">
-            Aretes tipo aro abierto con placa curva, elaborados en chapa de oro.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$160 MXN</span>
-          </div>
+          <h3>Aretes Rectangulares Pavé</h3>
+          <p class="desc">Aretes de forma rectangular con acabado pavé, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$180 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Aretes tipo chaqueta con cristal y luna _ acero _ $150.jpg" alt="AretesTipoChaquetaconCri">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-tipo-aro-abierto-con-placa-curva.jpg" alt="Aretes Tipo Aro Abierto con Placa Curva" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Aretes Tipo Aro Abierto con Placa Curva</h3>
+          <p class="desc">Aretes tipo aro, elaborado en chapa de oro.</p>
+          <div class="card-foot"><span class="precio">$160 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/aretes-tipo-chaqueta-con-cristal-y-luna.jpg" alt="Aretes Tipo Chaqueta con Cristal y Luna" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Aretes Tipo Chaqueta con Cristal y Luna</h3>
-          <p class="desc">
-            Aretes tipo chaqueta con cristal y detalle de luna, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$150 MXN</span>
-          </div>
+          <p class="desc">Aretes con motivo de media luna con cristal facetado, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Arracada tipo huggie con cristal baguette _ chapa de oro _ 2 cm _ $150.jpg" alt="ArracadaHuggieconCristal">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/arracada-tipo-huggie-con-cristal-baguette.jpg" alt="Arracada Tipo Huggie con Cristal Baguette" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Arracada Huggie con Cristal Baguette</h3>
-          <p class="desc">
-            Arracada tipo huggie de 2 cm con cristal baguette, elaborada en chapa de oro.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$150 MXN</span>
-          </div>
+          <h3>Arracada Tipo Huggie con Cristal Baguette</h3>
+          <p class="desc">Arracada con cristal facetado con cristal talla baguette, elaborada en chapa de oro, con una extensión de 2 cm.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Arracadas Mini Obsidiana _ acero _ $130.jpg" alt="ArracadasMiniObsidiana">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/arracadas-mini-obsidiana.jpg" alt="Arracadas Mini con Obsidiana" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Arracadas Mini Obsidiana</h3>
-          <p class="desc">
-            Arracadas mini con piedra obsidiana, elaboradas en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$130 MXN</span>
-          </div>
+          <h3>Arracadas Mini con Obsidiana</h3>
+          <p class="desc">Arracadas con piedra de obsidiana, elaborada en acero.</p>
+          <div class="card-foot"><span class="precio">$130 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Arracadas con textura _ plata _ diámetro 2.7 _ $290.jpg" alt="ArracadasconTextura">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/arracadas-con-textura.jpg" alt="Arracadas con Textura" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Arracadas con Textura</h3>
-          <p class="desc">
-            Arracadas texturizadas de 2.7 cm de diámetro, elaboradas en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$290 MXN</span>
-          </div>
+          <p class="desc">Arracadas de diseño con textura, elaborada en plata, talla diámetro 2.7.</p>
+          <div class="card-foot"><span class="precio">$290 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Arracadas corazón _ acero _ $130.jpg" alt="ArracadasCorazn">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/arracadas-corazon.jpg" alt="Arracadas Corazón" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Arracadas Corazón</h3>
-          <p class="desc">
-            Arracadas con forma de corazón, elaboradas en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$130 MXN</span>
-          </div>
+          <h3>Arracadas Corazón</h3>
+          <p class="desc">Arracadas con forma de corazón, elaborada en acero.</p>
+          <div class="card-foot"><span class="precio">$130 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Arracadas en gotas _ plata _ 2.5 cm _ $300.jpg" alt="ArracadasenGotas">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/arracadas-en-gotas.jpg" alt="Arracadas en Gotas" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Arracadas en Gotas</h3>
-          <p class="desc">
-            Arracadas de 2.5 cm con forma de gota, elaboradas en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$300 MXN</span>
-          </div>
+          <p class="desc">Arracadas en forma de gota, elaborada en plata, con una extensión de 2.5 cm.</p>
+          <div class="card-foot"><span class="precio">$300 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Arracadas lisas en acabado dorado _ acero _ 2.5 cm _ $120.jpg" alt="ArracadasLisasDoradas">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/arracadas-lisas-en-acabado-dorado.jpg" alt="Arracadas Lisas en Acabado Dorado" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Arracadas Lisas Doradas</h3>
-          <p class="desc">
-            Arracadas lisas de 2.5 cm en acabado dorado, elaboradas en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$120 MXN</span>
-          </div>
+          <h3>Arracadas Lisas en Acabado Dorado</h3>
+          <p class="desc">Arracadas de diseño lisas en acabado dorado, elaborada en acero, con una extensión de 2.5 cm.</p>
+          <div class="card-foot"><span class="precio">$120 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Arracadas ovaladas _ chapa de oro plateada _ $150.jpg" alt="ArracadasOvaladas">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/arracadas-ovaladas.jpg" alt="Arracadas Ovaladas" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Arracadas Ovaladas</h3>
-          <p class="desc">
-            Arracadas de forma ovalada, elaboradas en chapa de oro.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$150 MXN</span>
-          </div>
+          <p class="desc">Arracadas de forma ovalada, elaborada en chapa de oro plateada.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Arracadas pavé _ chapa de oro _ $160.jpg" alt="ArracadasPav">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/arracadas-plata.jpg" alt="Arracadas Plata" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Arracadas Pavé</h3>
-          <p class="desc">
-            Arracadas con acabado pavé, elaboradas en chapa de oro.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$160 MXN</span>
-          </div>
+          <h3>Arracadas Plata</h3>
+          <p class="desc">Arracadas de diseño plata, con una extensión de 2.5 CM diámetro.</p>
+          <div class="card-foot"><span class="precio">$240 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Arracadas plata _ 2.5 CM diámetro _ $240.jpg" alt="ArracadasdePlata">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/plata-martillada.jpg" alt="Plata Martillada" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Arracadas de Plata</h3> 
-          <p class="desc">
-            Arracadas de 2.5 cm de diámetro, elaboradas en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$240 MXN</span>
-          </div>
+          <h3>Plata Martillada</h3>
+          <p class="desc">Plata de diseño martillada, elaborado en broche mariposa.</p>
+          <div class="card-foot"><span class="precio">$300 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Plata martillada _ broche mariposa _ Precio 300.jpg" alt="AretesPlataMartillada">
+        <div class="card-media">
+          <span class="tag">aretes</span>
+          <img src="imagenes/aretes/set-tres-pares-aretes-con-esfera-lisa-y-cristal.jpg" alt="Set Tres Pares Aretes con Esfera Lisa y Cristal" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Aretes Plata Martillada</h3>
-          <p class="desc">
-            Aretes en plata martillada con broche tipo mariposa.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$300 MXN</span>
-          </div>
+          <h3>Set Tres Pares Aretes con Esfera Lisa y Cristal</h3>
+          <p class="desc">Set con esferas pulidas con cristal facetado, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$90 MXN</span></div>
         </div>
       </article>
-
-      <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Aretes</span>
-          <img class="" src="img/Aretes/Set tres pares aretes con esfera lisa y cristal _ acero _ $90.jpg" alt="SetdeTresParesconEsferaL">
-        </div>
-        <div class="card-body">
-          <h3>Set de Tres Pares con Esfera Lisa y Cristal</h3>
-          <p class="desc">
-            Set de tres pares de aretes con esfera lisa y cristal, elaborados en acero inoxidable.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$90 MXN</span>
-          </div>
-        </div>
-      </article>
-
-    </div>
+</div>
   </section>
-  
-  <!-- ===================== COLLARES ===================== -->
+
   <section class="seccion" id="collares">
     <div class="seccion-head">
       <div>
         <h2>Collares</h2>
         <p>El detalle que acompaña cada historia.</p>
       </div>
+      <span class="conteo">21 piezas</span>
     </div>
     <div class="grid">
-
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Collares</span>
-          <img class="rose-mark" src="rosemom-icono.png" alt="Ícono RoseMom">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/cadena-singapur.jpg" alt="Cadena Singapur" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Collar Rosa Silvestre</h3>
-          <p class="desc">Dije de rosa en plata bañada en oro</p>
-          <div class="card-foot"><span class="precio">$690 MXN</span></div>
+          <h3>Cadena Singapur</h3>
+          <p class="desc">Cadena tipo Singapur, elaborada en acero, con una extensión de 46 cm.</p>
+          <div class="card-foot"><span class="precio">$110 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Collares</span>
-          <img class="rose-mark" src="rosemom-icono.png" alt="Ícono RoseMom">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/cadena-barbada-eslabon-chico.jpg" alt="Cadena Barbada Eslabón Chico" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Collar Hilo de Perlas</h3>
-          <p class="desc">Perlas cultivadas con broche de rosa</p>
-          <div class="card-foot"><span class="precio">$980 MXN</span></div>
+          <h3>Cadena Barbada Eslabón Chico</h3>
+          <p class="desc">Cadena de eslabones, con una extensión de 50 cm.</p>
+          <div class="card-foot"><span class="precio">$220 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Collares</span>
-          <img class="rose-mark" src="rosemom-icono.png" alt="Ícono RoseMom">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/cadena-cola-de-topo-plana.jpg" alt="Cadena Cola de Topo Plana" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Collar Gargantilla Vintage</h3>
-          <p class="desc">Cadena delicada de estilo clásico</p>
-          <div class="card-foot"><span class="precio">$560 MXN</span></div>
+          <h3>Cadena Cola de Topo Plana</h3>
+          <p class="desc">Cadena tipo cola de topo, elaborada en acero, con una extensión de 50 cm.</p>
+          <div class="card-foot"><span class="precio">$120 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Collares</span>
-          <img class="rose-mark" src="rosemom-icono.png" alt="Ícono RoseMom">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/cadena-con-eslabones-entrelazados.jpg" alt="Cadena con Eslabones Entrelazados" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Collar Iniciales &amp; Rosa</h3>
-          <p class="desc">Personalizable con inicial + dije floral</p>
-          <div class="card-foot"><span class="precio">$720 MXN</span></div>
+          <h3>Cadena con Eslabones Entrelazados</h3>
+          <p class="desc">Cadena de eslabones, elaborada en plata, con una extensión de 40 cm.</p>
+          <div class="card-foot"><span class="precio">$230 MXN</span></div>
         </div>
       </article>
 
-    </div>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/cadena-de-bolitas-plateada.jpg" alt="Cadena de Bolitas Plateada" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Cadena de Bolitas Plateada</h3>
+          <p class="desc">Cadena con bolitas delicadas, elaborada en acero, con una extensión de 46.5 cm.</p>
+          <div class="card-foot"><span class="precio">$80 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/cadena-eslabon-garibaldi.jpg" alt="Cadena Eslabon Garibaldi" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Cadena Eslabon Garibaldi</h3>
+          <p class="desc">Cadena de eslabones tipo Garibaldi, con una extensión de 50 cm.</p>
+          <div class="card-foot"><span class="precio">$280 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/cadena-eslabon-cubano-hueco.jpg" alt="Cadena Eslabon Cubano Hueco" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Cadena Eslabon Cubano Hueco</h3>
+          <p class="desc">Cadena de eslabones tipo cubano, elaborada en acero, con una extensión de 44 cm.</p>
+          <div class="card-foot"><span class="precio">$120 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/cadena-eslabon-singapur.jpg" alt="Cadena Eslabón Singapur" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Cadena Eslabón Singapur</h3>
+          <p class="desc">Cadena de eslabones tipo Singapur, elaborada en acero, con una extensión de 50 cm.</p>
+          <div class="card-foot"><span class="precio">$90 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/cadena-eslabon-ovalado.jpg" alt="Cadena Eslabón Ovalado" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Cadena Eslabón Ovalado</h3>
+          <p class="desc">Cadena de forma ovalada de eslabones, elaborada en plata, con una extensión de 50 cm.</p>
+          <div class="card-foot"><span class="precio">$280 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/collar-cola-de-topo-plano-dorado.jpg" alt="Collar Cola de Topo Plano Dorado" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Collar Cola de Topo Plano Dorado</h3>
+          <p class="desc">Collar tipo cola de topo, elaborado en acero, con una extensión de 48 cm.</p>
+          <div class="card-foot"><span class="precio">$120 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/collar-con-dije-flor.jpg" alt="Collar con Dije Flor" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Collar con Dije Flor</h3>
+          <p class="desc">Collar con motivo floral, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$180 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/collar-con-medallon.jpg" alt="Collar con Medallón" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Collar con Medallón</h3>
+          <p class="desc">Collar con medallón central, elaborado en m.</p>
+          <div class="card-foot"><span class="precio">$135 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/collar-cordon-negro-con-dije-circular-calado-dorado.jpg" alt="Collar Cordón Negro con Dije Circular Calado Dorado" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Collar Cordón Negro con Dije Circular Calado Dorado</h3>
+          <p class="desc">Collar de diseño cordón negro con dije circular calado dorado, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/collar-doble-con-cuentas-tubulares-facetadas.jpg" alt="Collar Doble con Cuentas Tubulares Facetadas" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Collar Doble con Cuentas Tubulares Facetadas</h3>
+          <p class="desc">Collar de doble hilera, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$230 MXN</span></div>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/collar-dorado-tipo-estacion-con-perlas-perlas.jpg" alt="Collar Dorado Tipo Estación con Perlas con Perlas" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Collar Dorado Tipo Estación con Perlas con Perlas</h3>
+          <p class="desc">Collar con perla cultivada, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$160 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/collar-esferas-doradas-en-acabado-pulido.jpg" alt="Collar Esferas Doradas en Acabado Pulido" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Collar Esferas Doradas en Acabado Pulido</h3>
+          <p class="desc">Collar con esferas pulidas, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/collar-tipo-cordon-salomonico.jpg" alt="Collar Tipo Cordón Salomónico" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Collar Tipo Cordón Salomónico</h3>
+          <p class="desc">Collar tipo cordón salomónico, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$120 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/collar-tipo-lariat-con-perla-barroca.jpg" alt="Collar Tipo Lariat con Perla Barroca" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Collar Tipo Lariat con Perla Barroca</h3>
+          <p class="desc">Collar con perla cultivada tipo lariat, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$200 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">collares</span>
+          <img src="imagenes/collares/collar-torzal.jpg" alt="Collar Torzal" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Collar Torzal</h3>
+          <p class="desc">Collar tipo torzal, elaborado en plata, con una extensión de 50 cm.</p>
+          <div class="card-foot"><span class="precio">$250 MXN</span></div>
+        </div>
+      </article>
+</div>
   </section>
 
-  <!-- ===================== PULSERAS ===================== -->
   <section class="seccion" id="pulseras">
-
     <div class="seccion-head">
       <div>
         <h2>Pulseras</h2>
-        <p>Detalles que acompañan cada movimiento de tus manos.</p>
+        <p>Elegancia sutil para el día a día.</p>
       </div>
+      <span class="conteo">21 piezas</span>
     </div>
     <div class="grid">
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/brazalete-abierto-plateado-de-doble-linea.jpg" alt="Brazalete Abierto Plateado de Doble Línea" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Brazalete Abierto Plateado de Doble Línea</h3>
+          <p class="desc">Brazalete de doble hilera, elaborado en acero, con una extensión de 6 cm de diámetro.</p>
+          <div class="card-foot"><span class="precio">$150 MXN</span></div>
+        </div>
+      </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Pulseras</span>
-          <img class="" src="img/Pulseras/Pulsera bolitas tricolor _ 18 cm _ plata _ $300.jpg" alt="PulseraBolitasTricolor">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/brazalete-plateado-texturizado.jpg" alt="Brazalete Plateado Texturizado" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Brazalete Plateado Texturizado</h3>
+          <p class="desc">Brazalete de diseño plateado texturizado, elaborado en chapa de oro, con una extensión de 5 cm de diámetro.</p>
+          <div class="card-foot"><span class="precio">$190 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/juego-pulseras-doradas-lisas.jpg" alt="Juego Pulseras Doradas Lisas" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego Pulseras Doradas Lisas</h3>
+          <p class="desc">Juego de diseño pulseras doradas lisas, elaborado en acero, talla 6.5 de diámetro.</p>
+          <div class="card-foot"><span class="precio">$120 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-bolitas-tricolor.jpg" alt="Pulsera Bolitas Tricolor" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Pulsera Bolitas Tricolor</h3>
-          <p class="desc">
-            Pulsera de 18 cm con bolitas en tres tonos, elaborada en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$300 MXN</span>
-          </div>
+          <p class="desc">Pulsera con bolitas delicadas, elaborada en plata, con una extensión de 18 cm.</p>
+          <div class="card-foot"><span class="precio">$300 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Pulseras</span>
-          <img class="" src="img/Pulseras/Pulsera estrellas _ plata _ 19 cm _ $480.jpg" alt="PulseraEstrellas">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-de-eslabon-ovalado-alargado.jpg" alt="Pulsera de Eslabón Ovalado Alargado" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Pulsera de Eslabón Ovalado Alargado</h3>
+          <p class="desc">Pulsera de forma ovalada de eslabones, elaborada en acero, con una extensión de 22.5 cm.</p>
+          <div class="card-foot"><span class="precio">$170 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-dorada-con-cristales-redondos-y-eslabones-tipo-gota.jpg" alt="Pulsera Dorada con Cristales Redondos y Eslabones Tipo Gota" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Pulsera Dorada con Cristales Redondos y Eslabones Tipo Gota</h3>
+          <p class="desc">Pulsera en forma de gota de forma redonda, elaborada en chapa de oro, con una extensión de 18 cm.</p>
+          <div class="card-foot"><span class="precio">$220 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-dorada-con-perlas-ovaladas-tipo-arroz.jpg" alt="Pulsera Dorada con Perlas Ovaladas Tipo Arroz" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Pulsera Dorada con Perlas Ovaladas Tipo Arroz</h3>
+          <p class="desc">Pulsera de forma ovalada con perla cultivada, elaborada en acero, con una extensión de 21 cm.</p>
+          <div class="card-foot"><span class="precio">$130 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-dorada-de-eslabon-mixto-texturizado.jpg" alt="Pulsera Dorada de Eslabón Mixto Texturizado" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Pulsera Dorada de Eslabón Mixto Texturizado</h3>
+          <p class="desc">Pulsera de eslabones de diseño combinado, elaborada en acero, con una extensión de 24 cm.</p>
+          <div class="card-foot"><span class="precio">$170 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-dorada-plana-tipo-cola-de-topo.jpg" alt="Pulsera Dorada Plana Tipo Cola de Topo" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Pulsera Dorada Plana Tipo Cola de Topo</h3>
+          <p class="desc">Pulsera tipo cola de topo, elaborada en acero, con una extensión de 20.5 cm.</p>
+          <div class="card-foot"><span class="precio">$130 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-eslabon-cubano-hueco-dorada.jpg" alt="Pulsera Eslabón Cubano Hueco Dorada" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Pulsera Eslabón Cubano Hueco Dorada</h3>
+          <p class="desc">Pulsera de eslabones tipo cubano, elaborada en acero, con una extensión de 20 cm.</p>
+          <div class="card-foot"><span class="precio">$130 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-estrellas.jpg" alt="Pulsera Estrellas" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Pulsera Estrellas</h3>
-          <p class="desc">
-            Pulsera de 19 cm con dijes de estrellas, elaborada en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$480 MXN</span>
-          </div>
+          <p class="desc">Pulsera con motivo de estrella, elaborada en plata, con una extensión de 19 cm.</p>
+          <div class="card-foot"><span class="precio">$480 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Pulseras</span>
-          <img class="" src="img/Pulseras/Pulsera estrellas _ plata italiana _ 19 cm _ Precio 350.jpg" alt="PulseraEstrellasPlataIta">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-estrellas-2.jpg" alt="Pulsera Estrellas" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Pulsera Estrellas Plata Italiana</h3>
-          <p class="desc">
-            Pulsera de 19 cm con dijes de estrellas, elaborada en plata italiana.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$350 MXN</span>
-          </div>
+          <h3>Pulsera Estrellas</h3>
+          <p class="desc">Pulsera con motivo de estrella, elaborada en plata italiana, con una extensión de 19 cm.</p>
+          <div class="card-foot"><span class="precio">$350 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Pulseras</span>
-          <img class="" src="img/Pulseras/Pulsera fina con bolitas _ 17.5 cm _ plata _ Precio 270.jpg" alt="PulseraFinaconBolitas">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-fina-con-bolitas.jpg" alt="Pulsera Fina con Bolitas" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Pulsera Fina con Bolitas</h3>
-          <p class="desc">
-            Pulsera fina de 17.5 cm con bolitas, elaborada en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$270 MXN</span>
-          </div>
+          <p class="desc">Pulsera con bolitas delicadas, elaborada en plata, con una extensión de 17.5 cm.</p>
+          <div class="card-foot"><span class="precio">$270 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Pulseras</span>
-          <img class="" src="img/Pulseras/Pulsera trenzada _ Plata _ 18 cm _ Precio 550.jpg" alt="PulseraTrenzada">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-plateada-con-cristales-intercalados.jpg" alt="Pulsera Plateada con Cristales Intercalados" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Pulsera Plateada con Cristales Intercalados</h3>
+          <p class="desc">Pulsera con cristal facetado, elaborada en chapa de oro, con una extensión de 18 cm.</p>
+          <div class="card-foot"><span class="precio">$190 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-plateada-de-eslabones-corazon.jpg" alt="Pulsera Plateada de Eslabones Corazón" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Pulsera Plateada de Eslabones Corazón</h3>
+          <p class="desc">Pulsera con forma de corazón de eslabones, elaborada en chapa de oro, con una extensión de 24 cm.</p>
+          <div class="card-foot"><span class="precio">$170 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-trenzada.jpg" alt="Pulsera Trenzada" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Pulsera Trenzada</h3>
-          <p class="desc">
-            Pulsera trenzada de 18 cm, elaborada en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$550 MXN</span>
-          </div>
+          <p class="desc">Pulsera de diseño trenzado, elaborada en plata, con una extensión de 18 cm.</p>
+          <div class="card-foot"><span class="precio">$550 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Pulseras</span>
-          <img class="" src="img/Pulseras/Pulsera trébol _ plata _ 18.5 cm_ $360.jpg" alt="PulseraTrbol">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulsera-trebol.jpg" alt="Pulsera Trébol" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Pulsera Trébol</h3>
-          <p class="desc">
-            Pulsera de 18.5 cm con dije de trébol, elaborada en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$360 MXN</span>
-          </div>
+          <h3>Pulsera Trébol</h3>
+          <p class="desc">Pulsera con forma de trébol, elaborada en plata, con una extensión de 18.5 cm.</p>
+          <div class="card-foot"><span class="precio">$360 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Pulseras</span>
-          <img class="" src="img/Pulseras/Pulseras Hojas _ Plata _ 19 cm _ Precio 290.jpg" alt="PulseraHojas">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/pulseras-hojas.jpg" alt="Pulseras Hojas" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Pulsera Hojas</h3>
-          <p class="desc">
-            Pulsera de 19 cm con dijes de hojas, elaborada en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$290 MXN</span>
-          </div>
+          <h3>Pulseras Hojas</h3>
+          <p class="desc">Pulseras con textura de hoja, elaborada en plata, con una extensión de 19 cm.</p>
+          <div class="card-foot"><span class="precio">$290 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Pulseras</span>
-          <img class="" src="img/Pulseras/Semanario en acabado plateado _ plata _ talla 9 _ $290.jpg" alt="SemanarioPlateado">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/semanario-en-acabado-plateado.jpg" alt="Semanario en Acabado Plateado" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Semanario Plateado</h3>
-          <p class="desc">
-            Semanario en acabado plateado, talla 9, elaborado en plata.
-          </p>
-          <div class="card-foot">
-            <span class="precio">$290 MXN</span>
-          </div>
+          <h3>Semanario en Acabado Plateado</h3>
+          <p class="desc">Semanario de diseño en acabado plateado, elaborado en oro laminado, talla 9.</p>
+          <div class="card-foot"><span class="precio">$290 MXN</span></div>
         </div>
       </article>
 
-    </div>
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">pulseras</span>
+          <img src="imagenes/pulseras/semanario-plateado-con-acabado-diamantado.jpg" alt="Semanario Plateado con Acabado Diamantado" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Semanario Plateado con Acabado Diamantado</h3>
+          <p class="desc">Semanario de diseño plateado con acabado diamantado, elaborado en oro laminado, con una extensión de 6.8 cm de diámetro.</p>
+          <div class="card-foot"><span class="precio">$300 MXN</span></div>
+        </div>
+      </article>
+</div>
   </section>
 
-  <!-- ===================== ANILLOS ===================== -->
   <section class="seccion" id="anillos">
     <div class="seccion-head">
       <div>
         <h2>Anillos</h2>
         <p>Pequeños símbolos de momentos especiales.</p>
       </div>
+      <span class="conteo">7 piezas</span>
     </div>
     <div class="grid">
-
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Anillos</span>
-          <img class="rose-mark" src="rosemom-icono.png" alt="Ícono RoseMom">
+        <div class="card-media">
+          <span class="tag">anillos</span>
+          <img src="imagenes/anillos/anillo-abierto-plateado-tipo-bombe-liso.jpg" alt="Anillo Abierto Plateado Tipo Bombe Liso" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Anillo Capullo</h3>
-          <p class="desc">Diseño floral en oro rosa, ajustable</p>
-          <div class="card-foot"><span class="precio">$390 MXN</span></div>
+          <h3>Anillo Abierto Plateado Tipo Bombe Liso</h3>
+          <p class="desc">Anillo de diseño abierto plateado tipo bombe liso, elaborado en chapa de oro.</p>
+          <div class="card-foot"><span class="precio">$100 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Anillos</span>
-          <img class="rose-mark" src="rosemom-icono.png" alt="Ícono RoseMom">
+        <div class="card-media">
+          <span class="tag">anillos</span>
+          <img src="imagenes/anillos/anillo-ancho-plateado-con-cristales-pave.jpg" alt="Anillo Ancho Plateado con Cristales Pavé" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Anillo Solitario Blush</h3>
-          <p class="desc">Circonia central, banda delicada</p>
-          <div class="card-foot"><span class="precio">$430 MXN</span></div>
+          <h3>Anillo Ancho Plateado con Cristales Pavé</h3>
+          <p class="desc">Anillo con cristal facetado con acabado pavé, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$100 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Anillos</span>
-          <img class="rose-mark" src="rosemom-icono.png" alt="Ícono RoseMom">
+        <div class="card-media">
+          <span class="tag">anillos</span>
+          <img src="imagenes/anillos/anillo-banda-de-eslabones.jpg" alt="Anillo Banda de Eslabones" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Anillo Doble Vuelta</h3>
-          <p class="desc">Estilo vintage entrelazado</p>
-          <div class="card-foot"><span class="precio">$410 MXN</span></div>
+          <h3>Anillo Banda de Eslabones</h3>
+          <p class="desc">Anillo de eslabones, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$80 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Anillos</span>
-          <img class="rose-mark" src="rosemom-icono.png" alt="Ícono RoseMom">
+        <div class="card-media">
+          <span class="tag">anillos</span>
+          <img src="imagenes/anillos/anillo-botanico-de-hoja-texturizada.jpg" alt="Anillo Botánico de Hoja Texturizada" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Anillo Rosa Grabada</h3>
-          <p class="desc">Grabado floral en banda fina</p>
-          <div class="card-foot"><span class="precio">$360 MXN</span></div>
+          <h3>Anillo Botánico de Hoja Texturizada</h3>
+          <p class="desc">Anillo con textura de hoja de inspiración botánica, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$120 MXN</span></div>
         </div>
       </article>
 
-    </div>
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">anillos</span>
+          <img src="imagenes/anillos/anillo-con-doble-brazo-tipo-pave.jpg" alt="Anillo con Doble Brazo Tipo Pavé" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Anillo con Doble Brazo Tipo Pavé</h3>
+          <p class="desc">Anillo con acabado pavé de doble hilera, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$130 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">anillos</span>
+          <img src="imagenes/anillos/anillo-cruzado-dorado-con-pave.jpg" alt="Anillo Cruzado Dorado con Pavé" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Anillo Cruzado Dorado con Pavé</h3>
+          <p class="desc">Anillo con acabado pavé, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$140 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">anillos</span>
+          <img src="imagenes/anillos/juego-anillos-dorados-delgados.jpg" alt="Juego Anillos Dorados Delgados" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego Anillos Dorados Delgados</h3>
+          <p class="desc">Juego de diseño anillos dorados delgados, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$100 MXN</span></div>
+        </div>
+      </article>
+</div>
   </section>
 
-  <!-- ===================== CONJUNTOS ===================== -->
   <section class="seccion" id="conjuntos">
     <div class="seccion-head">
       <div>
         <h2>Conjuntos</h2>
         <p>Piezas coordinadas para un look completo.</p>
       </div>
+      <span class="conteo">16 piezas</span>
     </div>
     <div class="grid">
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-1)">
-          <span class="tag">Conjuntos</span>
-          <img class="rose-mark" src="rosemom-icono.png" alt="Ícono RoseMom">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/conjunto-flor-con-cristales.jpg" alt="Conjunto Flor con Cristales" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Conjunto Jardín Rosa</h3>
-          <p class="desc">Collar + aretes a juego</p>
-          <div class="card-foot"><span class="precio">$980 MXN</span></div>
+          <h3>Conjunto Flor con Cristales</h3>
+          <p class="desc">Conjunto con motivo floral con cristal facetado.</p>
+          <div class="card-foot"><span class="precio">$320 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-2)">
-          <span class="tag">Conjuntos</span>
-          <img class="rose-mark" src="rosemom-icono.png" alt="Ícono RoseMom">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-collar-doble-y-aretes-motivo-libelula.jpg" alt="Juego Collar Doble y Aretes Motivo Libélula" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Conjunto Novia Blush</h3>
-          <p class="desc">Collar + pulsera + aretes</p>
-          <div class="card-foot"><span class="precio">$1,450 MXN</span></div>
+          <h3>Juego Collar Doble y Aretes Motivo Libélula</h3>
+          <p class="desc">Juego con motivo de libélula de doble hilera, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$160 MXN</span></div>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-media" style="background:var(--tono-3)">
-          <span class="tag">Conjuntos</span>
-          <img class="rose-mark" src="rosemom-icono.png" alt="Ícono RoseMom">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-con-motivo-pluma-en-acabado-dorado.jpg" alt="Juego con Motivo Pluma en Acabado Dorado" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Conjunto Esencia</h3>
-          <p class="desc">Anillo + pulsera a juego</p>
-          <div class="card-foot"><span class="precio">$720 MXN</span></div>
+          <h3>Juego con Motivo Pluma en Acabado Dorado</h3>
+          <p class="desc">Juego con motivo de pluma, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$120 MXN</span></div>
         </div>
       </article>
 
-    </div>
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-corazon-ambar-zirconia.jpg" alt="Juego Corazón Ámbar con Zirconia" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego Corazón Ámbar con Zirconia</h3>
+          <p class="desc">Juego con forma de corazón con zirconias engastadas, elaborado en plata.</p>
+          <div class="card-foot"><span class="precio">$390 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-de-gota-con-zirconia-transparente.jpg" alt="Juego de Gota con Zirconia Transparente" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego de Gota con Zirconia Transparente</h3>
+          <p class="desc">Juego en forma de gota con zirconias engastadas, elaborado en plata.</p>
+          <div class="card-foot"><span class="precio">$250 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-doble-con-perla-y-cristal-colgante.jpg" alt="Juego Doble con Perla y Cristal Colgante" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego Doble con Perla y Cristal Colgante</h3>
+          <p class="desc">Juego con perla cultivada con cristal facetado, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$220 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-dorado-con-cristal-facetado-tipo-pera.jpg" alt="Juego Dorado con Cristal Facetado Tipo Pera" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego Dorado con Cristal Facetado Tipo Pera</h3>
+          <p class="desc">Juego con cristal facetado, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$220 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-dorado-con-dije-de-esferas-articuladas.jpg" alt="Juego Dorado con Dije de Esferas Articuladas" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego Dorado con Dije de Esferas Articuladas</h3>
+          <p class="desc">Juego con esferas pulidas, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$190 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-dorado-con-esferas-pulidas-graduadas.jpg" alt="Juego Dorado con Esferas Pulidas Graduadas" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego Dorado con Esferas Pulidas Graduadas</h3>
+          <p class="desc">Juego con esferas pulidas, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$190 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-dorado-con-mariposas-caladas-y-perla-colgante.jpg" alt="Juego Dorado con Mariposas Caladas y Perla Colgante" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego Dorado con Mariposas Caladas y Perla Colgante</h3>
+          <p class="desc">Juego con mariposas caladas con perla cultivada, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$180 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-dorado-con-motivo-paloma.jpg" alt="Juego Dorado con Motivo Paloma" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego Dorado con Motivo Paloma</h3>
+          <p class="desc">Juego con motivo de paloma, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$120 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-dorado-con-perlas-y-dijo-tipo-arco.jpg" alt="Juego Dorado con Perlas y Dijo Tipo Arco" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego Dorado con Perlas y Dijo Tipo Arco</h3>
+          <p class="desc">Juego con perla cultivada, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$160 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-redondo-zirconia-facetado.jpg" alt="Juego Redondo Zirconia Facetado" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego Redondo Zirconia Facetado</h3>
+          <p class="desc">Juego de forma redonda con zirconias engastadas, elaborado en plata.</p>
+          <div class="card-foot"><span class="precio">$220 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-tulipan-con-zirconia-lila.jpg" alt="Juego Tulipan con Zirconia Lila" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego Tulipan con Zirconia Lila</h3>
+          <p class="desc">Juego con motivo de tulipán con zirconias engastadas, elaborado en plata.</p>
+          <div class="card-foot"><span class="precio">$250 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">conjuntos</span>
+          <img src="imagenes/conjuntos/juego-zirconia-grande.jpg" alt="Juego Zirconia Grande" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Juego Zirconia Grande</h3>
+          <p class="desc">Juego con zirconias engastadas, elaborado en plata.</p>
+          <div class="card-foot"><span class="precio">$290 MXN</span></div>
+        </div>
+      </article>
+</div>
   </section>
 
+  <section class="seccion" id="tobilleras">
+    <div class="seccion-head">
+      <div>
+        <h2>Tobilleras</h2>
+        <p>El toque final para el verano y los pies descalzos.</p>
+      </div>
+      <span class="conteo">4 piezas</span>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">tobilleras</span>
+          <img src="imagenes/tobilleras/tobillera-eslabon-forzado-con-barras.jpg" alt="Tobillera Eslabón Forzado con Barras" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Tobillera Eslabón Forzado con Barras</h3>
+          <p class="desc">Tobillera de eslabones tipo forzado, elaborada en plata, con una extensión de 23.5 cm.</p>
+          <div class="card-foot"><span class="precio">$200 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">tobilleras</span>
+          <img src="imagenes/tobilleras/tobillera-eslabon-marino.jpg" alt="Tobillera Eslabón Marino" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Tobillera Eslabón Marino</h3>
+          <p class="desc">Tobillera de eslabones tipo marino, elaborada en plata, con una extensión de 23.5 cm.</p>
+          <div class="card-foot"><span class="precio">$200 MXN</span></div>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">tobilleras</span>
+          <img src="imagenes/tobilleras/tobillera-eslabon-veneciano.jpg" alt="Tobillera Eslabón Veneciano" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Tobillera Eslabón Veneciano</h3>
+          <p class="desc">Tobillera de eslabones tipo veneciano, con una extensión de 23 cm.</p>
+          <div class="card-foot"><span class="precio">$200 MXN</span></div>
+        </div>
+      </article>
+</div>
+  </section>
+
+  <section class="seccion" id="religiosos">
+    <div class="seccion-head">
+      <div>
+        <h2>Artículos religiosos</h2>
+        <p>Piezas con significado, hechas para acompañarte.</p>
+      </div>
+      <span class="conteo">5 piezas</span>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">religiosos</span>
+          <img src="imagenes/religiosos/collar-sagrado-corazon.jpg" alt="Collar Sagrado Corazón" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Collar Sagrado Corazón</h3>
+          <p class="desc">Collar con forma de corazón con motivo de Sagrado Corazón, elaborado en oro laminado.</p>
+          <div class="card-foot"><span class="precio">$190 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">religiosos</span>
+          <img src="imagenes/religiosos/dije-crucifijo.jpg" alt="Dije Crucifijo" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Dije Crucifijo</h3>
+          <p class="desc">Dije con crucifijo, elaborado en plata, con una extensión de 5.3 cm.</p>
+          <div class="card-foot"><span class="precio">$250 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">religiosos</span>
+          <img src="imagenes/religiosos/medalla-san-benito.jpg" alt="Medalla San Benito" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Medalla San Benito</h3>
+          <p class="desc">Medalla con medalla grabada, elaborada en plata, con una extensión de 1.6 cm.</p>
+          <div class="card-foot"><span class="precio">$240 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">religiosos</span>
+          <img src="imagenes/religiosos/rosario-dorado-con-cuentas-texturizadas.jpg" alt="Rosario Dorado con Cuentas Texturizadas" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Rosario Dorado con Cuentas Texturizadas</h3>
+          <p class="desc">Rosario de diseño dorado con cuentas texturizadas, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$270 MXN</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <span class="tag">religiosos</span>
+          <img src="imagenes/religiosos/rosario-tricolor-con-cuentas-estriadas.jpg" alt="Rosario Tricolor con Cuentas Estriadas" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Rosario Tricolor con Cuentas Estriadas</h3>
+          <p class="desc">Rosario de diseño tricolor con cuentas estriadas, elaborado en acero.</p>
+          <div class="card-foot"><span class="precio">$270 MXN</span></div>
+        </div>
+      </article>
+</div>
+  </section>
 </main>
 
 <section class="frase">
@@ -1093,8 +1684,8 @@
   <div class="footer-inner">
     <div>
       <a href="#top" class="brand">
-        <img class="" src="img/logo2.png" alt="Ícono">
-        
+        <img class="" src="img/logo2.png" alt="Ícono RoseMom">
+
       </a>
       <p>Joyería inspirada en la belleza atemporal de las rosas — elegancia, delicadeza y cercanía en cada pieza.</p>
     </div>
@@ -1106,13 +1697,15 @@
         <li><a href="#pulseras">Pulseras</a></li>
         <li><a href="#anillos">Anillos</a></li>
         <li><a href="#conjuntos">Conjuntos</a></li>
+        <li><a href="#tobilleras">Tobilleras</a></li>
+        <li><a href="#religiosos">Artículos religiosos</a></li>
       </ul>
     </div>
+   
     <div>
-      <h4>Ayuda</h4>
+      <h4>Contacto</h4>
       <ul>
-        <li><a href="#">Contacto</a></li>
-
+        <li><a href="https://wa.me/5214491502802" target="_blank">WhatsApp</a></li>
       </ul>
     </div>
   </div>
@@ -1121,6 +1714,17 @@
     <span>Hecho con cariño para quienes coleccionan momentos.</span>
   </div>
 </footer>
+
+<script>
+/* Recalcula el contador de piezas de cada sección según las tarjetas
+   que realmente existan. Así, al agregar o quitar productos a mano,
+   el número siempre queda correcto sin tener que editarlo. */
+document.querySelectorAll('.seccion').forEach(sec => {
+  const n = sec.querySelectorAll('.card').length;
+  const contador = sec.querySelector('.conteo');
+  if (contador) contador.textContent = n + (n === 1 ? ' pieza' : ' piezas');
+});
+</script>
 
 </body>
 </html>
