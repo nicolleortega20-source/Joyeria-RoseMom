@@ -25,11 +25,12 @@ https://joyeria-rose-mom.vercel.app
 
 ## Estructura del proyecto
 
+## Estructura del proyecto
+
+```text
 Joyeria-RoseMom/
-│
 ├── css/
 │   └── estilos.css
-│
 ├── imagenes/
 │   ├── Aretes/
 │   ├── Collares/
@@ -38,16 +39,13 @@ Joyeria-RoseMom/
 │   ├── Conjuntos/
 │   ├── Tobilleras/
 │   └── Religiosos/
-│
 ├── img/
 │   ├── logo.png
 │   └── logo2.png
-│
 ├── .gitignore
 ├── README.md
 └── index.html
-
-
+```
 ---
 
 # Categorías del catálogo
