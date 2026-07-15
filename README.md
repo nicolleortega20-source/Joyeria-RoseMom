@@ -1,6 +1,6 @@
 # RoseMom — Catálogo de Joyería
 
-Sitio web estático desarrollado con **HTML5**, **CSS3** y **JavaScript** para mostrar el catálogo digital de joyería de **RoseMom**.
+Sitio web estático desarrollado con **HTML**, **CSS** y **JavaScript** para mostrar el catálogo digital de joyería de **RoseMom**.
 
 El proyecto está orientado a ofrecer una experiencia elegante y responsiva, permitiendo visualizar los productos organizados por categorías sin necesidad de un backend o base de datos.
 
@@ -14,8 +14,8 @@ https://joyeria-rose-mom.vercel.app
 
 # Tecnologías utilizadas
 
-- HTML5
-- CSS3
+- HTML
+- CSS
 - JavaScript
 - Git
 - GitHub
@@ -23,25 +23,30 @@ https://joyeria-rose-mom.vercel.app
 
 ---
 
-# Estructura del proyecto
+## Estructura del proyecto
 
-```
-Joyeria-RoseMom
+Joyeria-RoseMom/
 │
-├── index.html
 ├── css/
 │   └── estilos.css
-├── img/
+│
+├── imagenes/
 │   ├── Aretes/
 │   ├── Collares/
 │   ├── Pulseras/
 │   ├── Anillos/
 │   ├── Conjuntos/
 │   ├── Tobilleras/
-│   ├── Religiosos/
-│   └── logo.png
-└── README.md
-```
+│   └── Religiosos/
+│
+├── img/
+│   ├── logo.png
+│   └── logo2.png
+│
+├── .gitignore
+├── README.md
+└── index.html
+
 
 ---
 
