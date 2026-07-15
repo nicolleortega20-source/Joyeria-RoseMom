@@ -79,7 +79,7 @@ Cada categoría muestra sus productos mediante tarjetas que incluyen:
 4. Guardar la fotografía dentro de:
 
 ```
-img/Categoria/
+imagen/Categoria/
 ```
 
 5. Guardar los cambios.
