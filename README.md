@@ -39,6 +39,8 @@ Joyeria-RoseMom/
 │   ├── Conjuntos/
 │   ├── Tobilleras/
 │   └── Religiosos/
+├── nuevas-pulseras-imagenes/
+│  
 ├── img/
 │   ├── logo.png
 │   └── logo2.png
