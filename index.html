@@ -1499,9 +1499,7 @@
 </footer>
 
 <script>
-/* Recalcula el contador de piezas de cada sección según las tarjetas
-   que realmente existan. Así, al agregar o quitar productos a mano,
-   el número siempre queda correcto sin tener que editarlo. */
+/* Función que recalcula el contador de cada sección, al ingresar o quitar algun artículo. */
 document.querySelectorAll('.seccion').forEach(sec => {
   const n = sec.querySelectorAll('.card').length;
   const contador = sec.querySelector('.conteo');
